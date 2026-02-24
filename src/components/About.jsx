@@ -1,4 +1,5 @@
 import React from 'react';
+import me from '../assets/me.png';
 
 const About = () => {
   return (
@@ -11,7 +12,7 @@ const About = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-1/3 flex justify-center" data-aos="fade-right">
             <img
-              src="src/assets/me.png"
+              src={me}
               alt="Digital Artist"
               className="rounded-full w-64 h-64 lg:w-80 lg:h-80 object-cover shadow-2xl border-4 border-cyan-500"
             />
