@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 
@@ -15,9 +15,11 @@ const ModelViewer = ({ modelUrl }) => {
             failIfMajorPerformanceCaveat: false}}
         camera={{ position: [0, 0, 5] }}>
         <ambientLight intensity={1} />
-        <directionalLight position={[5, 5, 5]} />
-        <Model url={modelUrl} />
-        <OrbitControls enableZoom={true} />
+        <directionalLight position={[5, 5, 5]} intensity={1.5} />
+        <Suspense fallback={null}>
+          <Model url={modelUrl} />
+        </Suspense>
+        <OrbitControls enablePan enableZoom />
       </Canvas>
     </div>
   );
