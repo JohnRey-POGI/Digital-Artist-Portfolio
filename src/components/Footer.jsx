@@ -4,7 +4,7 @@ import { FaTwitter, FaInstagram, FaArtstation, FaLinkedin } from 'react-icons/fa
 const socialLinks = [
   { icon: <FaTwitter />, url: 'https://twitter.com' },
   { icon: <FaInstagram />, url: 'https://instagram.com' },
-  { icon: <FaArtstation />, url: 'https://artstation.com' },
+  { icon: <FaArtstation />, url: 'https://www.artstation.com/xr374rt6' },
   { icon: <FaLinkedin />, url: 'https://linkedin.com' },
 ];
 
@@ -26,8 +26,8 @@ const Footer = () => {
           ))}
         </div>
         <div className="mb-6 text-gray-400 flex flex-col sm:flex-row justify-center items-center gap-4">
-          <a href="mailto:reynaldo@gmail.com" className="hover:text-cyan-400 transition-colors duration-300">
-            reynaldo@gmail.com
+          <a href="mailto:reynaldostaana02@gmail.com" className="hover:text-cyan-400 transition-colors duration-300">
+            reynaldostaana02@gmail.com
           </a>
           <span className="hidden sm:inline text-gray-600">|</span>
           <a href="tel:+63 929 423 1447" className="hover:text-cyan-400 transition-colors duration-300">

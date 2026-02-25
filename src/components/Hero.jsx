@@ -1,5 +1,5 @@
 import React from 'react';
-import bgVideo from '../assets/sample-artwork.mp4';
+import bgVideo from '../assets/jabber.mp4';
 
 const Hero = () => {
   const scrollToSection = (id) => {
