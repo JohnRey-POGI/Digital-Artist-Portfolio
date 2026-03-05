@@ -26,8 +26,8 @@ const Footer = () => {
           ))}
         </div>
         <div className="mb-6 text-gray-400 flex flex-col sm:flex-row justify-center items-center gap-4">
-          <a href="mailto:reynaldostaana02@gmail.com" className="hover:text-cyan-400 transition-colors duration-300">
-            reynaldostaana02@gmail.com
+          <a href="mailto:xr374rt@gmail.com" className="hover:text-cyan-400 transition-colors duration-300">
+            xr374rt@gmail.com
           </a>
           <span className="hidden sm:inline text-gray-600">|</span>
           <a href="tel:+63 929 423 1447" className="hover:text-cyan-400 transition-colors duration-300">
@@ -35,7 +35,7 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-gray-500">
-          &copy; {new Date().getFullYear()} Reynaldo. All Rights Reserved.
+          &copy; {new Date().getFullYear()} XR374RT. All Rights Reserved.
         </p>
       </div>
     </footer>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import logo from "../assets/logoNav.jpg";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,7 +46,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           <div className="text-2xl font-bold text-cyan-400 transition-transform duration-300 hover:scale-105">
             <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>
-              NALDO
+              <div className="flex items-center gap-2">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-10 w-auto hover:scale-110 transition-transform duration-300"
+                />
+              </div>
             </a>
           </div>
 

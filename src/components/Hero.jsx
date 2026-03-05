@@ -25,7 +25,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/60"></div>
       <div className="relative z-10 text-center text-white px-6" data-aos="fade-up">
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4">
-          Reynaldo
+          XR37 4RT
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 mb-8">
           Digital Illustrator & Concept Artist
