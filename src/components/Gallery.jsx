@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import ModelViewer from './ModelViewer';
 import dragonModel from "../assets/models/Dragon.glb";
 import sniperModel from "../assets/models/sniper-rifle.glb";
-import dragonModelPreview from "../assets/models/Dragon-Preview.jpg";
+import dragonModelPreview from "../assets/models/Dragon-preview.jpg";
 import sniperModelPreview from "../assets/models/sniper-rifle-preview.jpg";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "../utils/animations";
