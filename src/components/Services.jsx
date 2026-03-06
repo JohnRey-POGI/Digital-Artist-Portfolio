@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from "framer-motion";
+import { fadeUp } from "../utils/animations";
 
 const servicesData = [
   {
@@ -20,7 +22,12 @@ const servicesData = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-16 md:py-24 bg-gray-900">
+    <motion.section id="services"
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false }}
+      className="py-16 md:py-24 bg-gray-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-cyan-400">Services & Commissions</h2>
@@ -53,7 +60,7 @@ const Services = () => {
           </a>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

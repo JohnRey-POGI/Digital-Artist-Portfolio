@@ -52,7 +52,7 @@ export const softwareSkills = [
 
 const Skills = () => {
   return (
-    <section className="py-16 bg-gray-900">
+    <section id="skills" className="py-16 bg-gray-900">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
         <div className="text-center mb-12">

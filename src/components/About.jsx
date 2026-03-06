@@ -1,10 +1,18 @@
 import React from 'react';
 import me from '../assets/me.png';
+import { motion } from "framer-motion";
+import { fadeUp } from "../utils/animations";
 
 const About = () => {
   return (
-    <section id="about" className="py-16 md:py-24 bg-gray-800">
-      <div className="container mx-auto px-6">
+    <section id="about" className="relative min-h-screen py-24 container mx-auto z-20" >
+      {/* className="py-16 md:py-24 bg-gray-800" */}
+      <motion.div 
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false }}
+        className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-cyan-400">About Me</h2>
           <div className="w-24 h-1 bg-cyan-400 mx-auto mt-4 rounded"></div>
@@ -26,7 +34,7 @@ const About = () => {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

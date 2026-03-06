@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import ModelViewer from './ModelViewer';
 import dragonModel from "../assets/models/Dragon.glb";
 import sniperModel from "../assets/models/sniper-rifle.glb";
+import dragonModelPreview from "../assets/models/Dragon-Preview.jpg";
+import sniperModelPreview from "../assets/models/sniper-rifle-preview.jpg";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUp } from "../utils/animations";
 
 import {
   SiAdobeaftereffects,
@@ -69,7 +73,7 @@ const galleryImages = [
 const models3D = [
   {
     id: 50,
-    preview: "src/assets/models/Dragon-preview.jpg",
+    preview: dragonModelPreview,
     modelUrl: dragonModel,
     title: "3D Dragon Model",
     description: "A detailed 3D model of a dragon, perfect for games and animations.",
@@ -77,7 +81,7 @@ const models3D = [
   },
   {
     id: 51,
-    preview: "src/assets/models/sniper-rifle-preview.jpg",
+    preview: sniperModelPreview,
     modelUrl: sniperModel,
     title: "3D Sniper Rifle Model",
     description: "A detailed 3D model of a sniper rifle, perfect for games and animations.",
@@ -141,6 +145,18 @@ const Gallery = () => {
     }
   };
 
+  useEffect(() => {
+    if (currentIndex !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [currentIndex]);
+
   return (
     <section id="gallery" className="py-16 md:py-24 bg-gray-800">
       <div className="container mx-auto px-6">
@@ -148,10 +164,16 @@ const Gallery = () => {
           <h2 className="text-4xl font-bold text-cyan-400">Portfolio Gallery</h2>
           <div className="w-24 h-1 bg-cyan-400 mx-auto mt-4 rounded"></div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <motion.div variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:gap-4 gap-2">
           {galleryImages.map((image) => (
-            <div
+            <motion.div
               key={image.id}
+              variants={fadeUp}
+              whileHover={{ scale: 1.1 }}
               className="group relative overflow-hidden rounded-lg cursor-pointer"
               onClick={() => openModal(image.id, "image")}
               data-aos="fade-up"
@@ -166,9 +188,9 @@ const Gallery = () => {
                   View
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <h2 className="text-3xl font-bold text-cyan-400 mt-16 mb-8 text-center">
           3D Works
         </h2>
@@ -197,9 +219,10 @@ const Gallery = () => {
       {/* Modal */}
       {currentIndex !== null && (
         <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-auto"
+          className="fixed inset-0 bg-black/90 z-50 overflow-y-auto"
           onClick={closeModal}
-        >
+        >{/* flex items-center justify-center p-4*/}
+          <div className="min-h-screen flex items-center justify-center p-4">
           <div
             className="relative w-full max-w-6xl bg-gray-900 rounded-xl p-6 flex flex-col md:flex-row gap-6"
             onClick={(e) => e.stopPropagation()}
@@ -281,6 +304,7 @@ const Gallery = () => {
             >
               &times;
             </button>
+          </div>
           </div>
         </div>
       )}

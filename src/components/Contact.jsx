@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { motion } from "framer-motion";
+import { fadeUp } from "../utils/animations";
 
 const Contact = () => {
   const [formState, setFormState] = useState({
@@ -44,7 +46,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-gray-800">
+    <motion.section id="contact"
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false }}
+      className="py-16 md:py-24 bg-gray-800">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-cyan-400">Get In Touch</h2>
@@ -97,7 +104,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
