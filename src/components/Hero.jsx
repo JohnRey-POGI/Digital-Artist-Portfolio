@@ -36,7 +36,7 @@ const Hero = () => {
       {/* Parallax Content */}
       <motion.div
         style={{ y: yText, opacity }}
-        className="relative z-10 text-center text-white px-6" data-aos="fade-up">
+        className="relative z-20 text-center text-white px-6" data-aos="fade-up">
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4">
           XR37 4RT
         </h1>

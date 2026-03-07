@@ -27,8 +27,9 @@ const Services = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: false }}
-      className="py-16 md:py-24 bg-gray-900">
-      <div className="container mx-auto px-6">
+      className="relative py-16 md:py-24">
+      <div className="absolute inset-0 bg-gray-900 z-0" />
+      <div className="container mx-auto px-6 relative z-25">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-cyan-400">Services & Commissions</h2>
           <div className="w-24 h-1 bg-cyan-400 mx-auto mt-4 rounded"></div>

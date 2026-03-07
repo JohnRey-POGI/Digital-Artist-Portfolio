@@ -5,14 +5,14 @@ import { fadeUp } from "../utils/animations";
 
 const About = () => {
   return (
-    <section id="about" className="relative min-h-screen py-24 container mx-auto z-20" >
+    <section id="about" className="relative min-h-screen py-24 container mx-auto" >
       {/* className="py-16 md:py-24 bg-gray-800" */}
       <motion.div 
         variants={fadeUp}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false }}
-        className="container mx-auto px-6">
+        className="container mx-auto px-6 relative z-20">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-cyan-400">About Me</h2>
           <div className="w-24 h-1 bg-cyan-400 mx-auto mt-4 rounded"></div>

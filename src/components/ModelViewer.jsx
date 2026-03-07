@@ -1,26 +1,49 @@
-import React, { Suspense, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Center, Environment, Bounds, Html } from "@react-three/drei";
+import React, { Suspense, useState, useRef, useEffect } from "react";
+import { Canvas, useFrame  } from "@react-three/fiber";
+import { OrbitControls, useGLTF, Center, Environment, Bounds, Html, Float, useAnimations } from "@react-three/drei";
 
 function Model({ url }) {
-  const { scene } = useGLTF(url);
-  return (
-    <Center>
-      <primitive object={scene} scale={0.5} />
-    </Center>
-  );
+  const modelRef = useRef();
+  const { scene, animations } = useGLTF(url);
+  const { actions } = useAnimations(animations, modelRef);
+
+  // useEffect(() => {
+  //   if (actions) {
+  //     Object.values(actions).forEach((action) => action.play());
+  //   }
+  // }, [actions]);
+
+  useEffect(() => {
+    if (!actions) return;
+
+    Object.values(actions).forEach((action) => {
+      if (action) action.play();
+    });
+
+  }, [actions]);
+
+
+  useFrame((state, delta) => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y += delta * 0.3; // infinite rotate
+    }
+  });
+
+  return <primitive ref={modelRef} object={scene} scale={0.5} />;
+  // const { scene } = useGLTF(url);
+  // return (
+  //   <Center>
+  //     <primitive object={scene} scale={0.5} />
+  //   </Center>
+  // );
 }
 
 const ModelViewer = ({ modelUrl }) => {
   const [fullscreen, setFullscreen] = useState(false);
 
   return (
-    // <div
-    //   className={`relative w-full bg-black rounded-lg overflow-hidden 
-    //   ${fullscreen ? "fixed inset-0 z-[100]" : "h-[50vh] md:h-[70vh] lg:h-[75vh]"}`}
-    // >
     <div
-      className={`bg-black rounded-lg overflow-hidden ${
+      className={`bg-black/20 rounded-lg overflow-hidden backdrop-blur-xs ${
         fullscreen
           ? "fixed inset-0 w-screen h-screen z-[100] flex items-center justify-center"
           : "relative w-[500px] md:w-[600px] lg:w-[700px] h-[50vh] md:h-[70vh] lg:h-[75vh]"
@@ -34,16 +57,24 @@ const ModelViewer = ({ modelUrl }) => {
         {fullscreen ? "Exit Fullscreen" : "Fullscreen"}
       </button>
       
-      <Canvas camera={{ position: [3, 2, 6], fov: 50 }}>
+      <Canvas key={modelUrl} camera={{ position: [3, 2, 6], fov: 50 }}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[5, 5, 5]} intensity={1.5} />
         <directionalLight position={[-5, 5, -5]} intensity={0.8} />
         
         <Suspense fallback={<Loader />}>
-          {/* Auto-fit camera */}
-          <Bounds fit clip observe margin={1.2}>
-            <Model url={modelUrl} />
-          </Bounds>
+          {/* Auto-fit camera */} 
+            <Bounds fit clip observe margin={1.2}>
+          <Center>
+              {/* <Float
+                speed={2}
+                rotationIntensity={1}
+                floatIntensity={2}
+              >
+              </Float> */}
+                <Model url={modelUrl} />
+          </Center>
+            </Bounds>
         </Suspense>
 
         <OrbitControls

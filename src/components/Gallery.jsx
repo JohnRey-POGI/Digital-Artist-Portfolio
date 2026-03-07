@@ -2,8 +2,10 @@ import React, { useState, useEffect} from 'react';
 import ModelViewer from './ModelViewer';
 import dragonModel from "../assets/models/Dragon.glb";
 import sniperModel from "../assets/models/sniper-rifle.glb";
+import wolfModel from "../assets/models/Wolf.glb";
 import dragonModelPreview from "../assets/models/Dragon-preview.jpg";
 import sniperModelPreview from "../assets/models/sniper-rifle-preview.jpg";
+import wolfModelPreview from "../assets/models/Wolf-preview.jpg";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "../utils/animations";
 
@@ -87,6 +89,14 @@ const models3D = [
     description: "A detailed 3D model of a sniper rifle, perfect for games and animations.",
     software: ["Blender"],
   },
+  {
+    id: 52,
+    preview: wolfModelPreview,
+    modelUrl: wolfModel,
+    title: "3D Sniper Rifle Model",
+    description: "A detailed 3D model of a sniper rifle, perfect for games and animations.",
+    software: ["Blender"],
+  },
 ];
 
 const softwareIcons = {
@@ -158,8 +168,9 @@ const Gallery = () => {
   }, [currentIndex]);
 
   return (
-    <section id="gallery" className="py-16 md:py-24 bg-gray-800">
-      <div className="container mx-auto px-6">
+    <section id="gallery" className="relative py-16 md:py-24">
+      <div className="absolute inset-0 bg-gray-800 z-0" />
+      <div className="container mx-auto px-6 relative z-20">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-cyan-400">Portfolio Gallery</h2>
           <div className="w-24 h-1 bg-cyan-400 mx-auto mt-4 rounded"></div>
