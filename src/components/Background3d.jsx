@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
-import Orb from "./Orb"; // import the orb
+import Orb from "./Orb";
 import useActiveSection from "../hooks/useActiveSection";
 
 const sectionBlurConfig = {
@@ -37,17 +37,22 @@ export default function Background3D() {
 
   useEffect(() => {
     const config = sectionBlurConfig[activeSection] || sectionBlurConfig.hero;
-    setBlurAmount(config[device] || "8px");
+    setBlurAmount(config[device] || "0px");
   }, [activeSection, device]);
 
   return (
     <div 
       className="fixed inset-0 z-10 pointer-events-none transition-all duration-700 ease-in-out"
-      style={{ filter: `blur(${blurAmount})` }}
+      style={{ 
+        filter: `blur(${blurAmount})`,
+        // Will-change hint helps browser optimize the blur transition
+        willChange: "filter" 
+      }}
     >
       <Canvas 
         camera={{ position: [0, 0, 8], fov: 50 }} 
-        dpr={[1, 2]}
+        dpr={[1, 2]} // Optimization: Cap pixel ratio at 2 for high-dpi screens
+        gl={{ antialias: true, alpha: true }}
       >
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />

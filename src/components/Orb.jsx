@@ -10,12 +10,12 @@ const sectionConfig = {
     roughness: 0.1,
     positions: {
       mobile: [1.5, 2.5, 3],   // Centered for mobile
-      tablet: [1, 2, 4],   // Slightly offset for tablet
+      tablet: [1.5, 2, 4],   // Slightly offset for tablet
       desktop: [2, 2, 5]   // Original desktop position
     }
   },
   about: { 
-    color: '#06b6d4',
+    color: '#065f46',
     roughness: 0.6,
     positions: {
       mobile: [-1, 1, 2],
@@ -24,7 +24,7 @@ const sectionConfig = {
     }
   },
   skills: { 
-    color: '#22c55e',
+    color: '#4338ca',
     roughness: 0.2,
     positions: {
       mobile: [0, 0, 0],
@@ -36,7 +36,7 @@ const sectionConfig = {
     color: '#f97316',
     roughness: 0,
     positions: {
-      mobile: [1, 0, 4],
+      mobile: [1, 0, 5],
       tablet: [1, 0, 5],
       desktop: [2, 0, 6]
     }
@@ -47,7 +47,7 @@ const sectionConfig = {
     positions: {
       mobile: [-1, -1, 3],
       tablet: [-1, -1, 4],
-      desktop: [-2, -1, 4]
+      desktop: [-2, -1, 3]
     }
   },
   contact: { 
@@ -56,7 +56,7 @@ const sectionConfig = {
     positions: {
       mobile: [1, -1, 2],
       tablet: [1, -1, 2],
-      desktop: [3, -2, 1]
+      desktop: [2, -1, 5]
     }
   },
 };
