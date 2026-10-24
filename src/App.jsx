@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -8,8 +8,13 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Background3D from './components/Background3d';
+import { settings } from './content';
 
 const App = () => {
+  useEffect(() => {
+    if (settings.siteTitle) document.title = settings.siteTitle;
+  }, []);
+
   return (
     <div className="bg-gray-900 text-white font-sans relative">
       <Background3D />

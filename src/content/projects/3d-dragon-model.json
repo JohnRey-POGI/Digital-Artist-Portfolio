@@ -1,0 +1,12 @@
+{
+  "title": "3D Dragon Model",
+  "type": "3d",
+  "image": "/uploads/Dragon-preview.jpg",
+  "description": "A detailed 3D model of a dragon, perfect for games and animations.",
+  "software": [
+    "Blender"
+  ],
+  "date": "2026-03-08",
+  "published": true,
+  "model": "/uploads/Dragon.glb"
+}

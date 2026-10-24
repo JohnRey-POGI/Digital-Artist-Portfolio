@@ -1,0 +1,19 @@
+{
+  "services": [
+    {
+      "icon": "👤",
+      "title": "Character Commissions",
+      "description": "Bring your original characters to life with a custom illustration."
+    },
+    {
+      "icon": "⭐",
+      "title": "Fan Art",
+      "description": "Commission a unique piece of your favorite characters from games, anime, or movies."
+    },
+    {
+      "icon": "💼",
+      "title": "Commercial Work",
+      "description": "Professional illustrations for your business, including marketing materials and product art."
+    }
+  ]
+}

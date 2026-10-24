@@ -1,0 +1,21 @@
+{
+  "technical": [
+    { "name": "2D Animation", "icon": "circle" },
+    { "name": "Concept Art", "icon": "brush" },
+    { "name": "3D Animation", "icon": "cube-sphere" },
+    { "name": "3D Modeling", "icon": "box" },
+    { "name": "Marketing Illustration", "icon": "pen" },
+    { "name": "Photo Manipulation", "icon": "camera" },
+    { "name": "Video Editing", "icon": "video" }
+  ],
+  "software": [
+    { "name": "After Effects" },
+    { "name": "Blender" },
+    { "name": "Illustrator" },
+    { "name": "Photoshop" },
+    { "name": "Premiere Pro" },
+    { "name": "Animate" },
+    { "name": "Figma" },
+    { "name": "DaVinci Resolve" }
+  ]
+}

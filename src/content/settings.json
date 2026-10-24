@@ -1,0 +1,19 @@
+{
+  "siteTitle": "XR37 4RT | Digital Artist",
+  "logo": "/uploads/logo-nav.jpg",
+  "heroName": "XR37 4RT",
+  "heroTagline": "Digital Illustrator & Concept Artist",
+  "heroButtonText": "View My Work",
+  "heroVideo": "/uploads/jabber.mp4",
+  "aboutPhoto": "/uploads/me.png",
+  "aboutText": "Hello! I'm a passionate digital artist specializing in character design and concept art. With a keen eye for detail and a love for storytelling, I bring ideas to life through vibrant and dynamic visuals. My work is heavily inspired by fantasy, sci-fi, and the endless beauty of the digital realm.\n\nOver the years, I've had the pleasure of collaborating with various clients on exciting projects, ranging from video games to book illustrations. My goal is to create art that not only looks stunning but also resonates with its audience on an emotional level.",
+  "email": "xr374rt@gmail.com",
+  "phone": "+63 929 423 1447",
+  "copyrightName": "XR374RT",
+  "socials": [
+    { "platform": "twitter", "url": "https://twitter.com" },
+    { "platform": "instagram", "url": "https://instagram.com" },
+    { "platform": "artstation", "url": "https://www.artstation.com/xr374rt6" },
+    { "platform": "linkedin", "url": "https://linkedin.com" }
+  ]
+}

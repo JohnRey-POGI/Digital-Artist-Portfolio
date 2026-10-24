@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import logo from "../assets/logoNav.jpg";
+import { settings } from "../content";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +48,7 @@ const Navbar = () => {
             <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>
               <div className="flex items-center gap-2">
                 <img
-                  src={logo}
+                  src={settings.logo}
                   alt="Logo"
                   className="h-10 w-auto hover:scale-110 transition-transform duration-300"
                 />

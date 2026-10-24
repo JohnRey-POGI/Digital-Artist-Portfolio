@@ -1,24 +1,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { fadeUp } from "../utils/animations";
-
-const servicesData = [
-  {
-    title: 'Character Commissions',
-    description: 'Bring your original characters to life with a custom illustration.',
-    icon: '👤',
-  },
-  {
-    title: 'Fan Art',
-    description: 'Commission a unique piece of your favorite characters from games, anime, or movies.',
-    icon: '⭐',
-  },
-  {
-    title: 'Commercial Work',
-    description: 'Professional illustrations for your business, including marketing materials and product art.',
-    icon: '💼',
-  },
-];
+import { services as servicesData } from "../content";
 
 const Services = () => {
   return (

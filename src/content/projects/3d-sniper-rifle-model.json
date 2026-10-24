@@ -1,0 +1,12 @@
+{
+  "title": "3D Sniper Rifle Model",
+  "type": "3d",
+  "image": "/uploads/sniper-rifle-preview.jpg",
+  "description": "A detailed 3D model of a sniper rifle, perfect for games and animations.",
+  "software": [
+    "Blender"
+  ],
+  "date": "2026-03-07",
+  "published": true,
+  "model": "/uploads/sniper-rifle.glb"
+}

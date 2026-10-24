@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <title>Portfolio Editor</title>
+  </head>
+  <body>
+    <!--
+      Portfolio editor (Decap CMS). Open https://<your-site>/admin/ to use it.
+      Saving here commits to GitHub, and Vercel redeploys the site in ~1 minute.
+      Setup steps are in HOW-TO-ADD-PROJECTS.md.
+    -->
+    <script>window.CMS_MANUAL_INIT = true;</script>
+    <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+    <script>
+      const isLocal = ['localhost', '127.0.0.1'].includes(location.hostname);
+
+      // Keep in sync with softwareIconMap in src/utils/icons.jsx (names without an icon still show as text).
+      const softwareOptions = [
+        'Photoshop', 'Illustrator', 'After Effects', 'Premiere Pro', 'Lightroom', 'InDesign',
+        'Animate', 'Blender', 'Maya', '3ds Max', 'Houdini', 'ZBrush', 'Substance Painter',
+        'Cinema 4D', 'Unreal Engine', 'Unity', 'Figma', 'Canva', 'DaVinci Resolve', 'CapCut',
+        'Procreate', 'Clip Studio Paint', 'Krita', 'GIMP', 'Inkscape', 'Affinity Designer',
+        'Affinity Photo', 'Sketchfab',
+      ];
+
+      // Keep in sync with skillIcons in src/utils/icons.jsx.
+      const skillIconOptions = [
+        { label: 'Paint brush', value: 'brush' },
+        { label: 'Pen nib', value: 'pen' },
+        { label: 'Pencil', value: 'pencil' },
+        { label: 'Circle', value: 'circle' },
+        { label: 'Box (3D)', value: 'box' },
+        { label: 'Cube sphere (3D)', value: 'cube-sphere' },
+        { label: 'Cube', value: 'cube' },
+        { label: 'Camera', value: 'camera' },
+        { label: 'Photo camera', value: 'photo-camera' },
+        { label: 'Video', value: 'video' },
+        { label: 'Video camera', value: 'video-camera' },
+        { label: 'Film', value: 'film' },
+        { label: 'Picture', value: 'image' },
+        { label: 'Palette', value: 'palette' },
+        { label: 'Game controller', value: 'gamepad' },
+        { label: 'Magic wand', value: 'magic' },
+        { label: 'Megaphone', value: 'campaign' },
+      ];
+
+      const socialOptions = [
+        { label: 'Twitter / X', value: 'twitter' },
+        { label: 'Instagram', value: 'instagram' },
+        { label: 'ArtStation', value: 'artstation' },
+        { label: 'LinkedIn', value: 'linkedin' },
+        { label: 'Facebook', value: 'facebook' },
+        { label: 'YouTube', value: 'youtube' },
+        { label: 'TikTok', value: 'tiktok' },
+        { label: 'Behance', value: 'behance' },
+        { label: 'Dribbble', value: 'dribbble' },
+        { label: 'DeviantArt', value: 'deviantart' },
+        { label: 'Patreon', value: 'patreon' },
+        { label: 'Discord', value: 'discord' },
+        { label: 'GitHub', value: 'github' },
+        { label: 'Website', value: 'website' },
+      ];
+
+      window.initCMS({
+        config: {
+          load_config_file: false,
+          local_backend: isLocal,
+          backend: {
+            name: 'github',
+            repo: 'JohnRey-POGI/Digital-Artist-Portfolio',
+            branch: 'main',
+            base_url: location.origin,
+            auth_endpoint: 'api/auth',
+          },
+          site_url: location.origin,
+          display_url: location.origin,
+          media_folder: 'public/uploads',
+          public_folder: '/uploads',
+          collections: [
+            {
+              name: 'projects',
+              label: 'Projects',
+              label_singular: 'Project',
+              description:
+                'Your portfolio items. Choose a type: Image (artwork or render), Video (animation, 3D turntable, reel) or 3D Model (visitors can spin it). After you click Publish, the website updates in about 1 minute.',
+              folder: 'src/content/projects',
+              create: true,
+              delete: true,
+              format: 'json',
+              extension: 'json',
+              slug: '{{slug}}',
+              identifier_field: 'title',
+              summary: '{{title}}  ·  {{type}}  ·  {{date}}',
+              sortable_fields: ['date', 'title', 'type'],
+              view_groups: [{ label: 'Type', field: 'type' }],
+              editor: { preview: false },
+              fields: [
+                { label: 'Title', name: 'title', widget: 'string' },
+                {
+                  label: 'Type',
+                  name: 'type',
+                  widget: 'select',
+                  default: 'image',
+                  options: [
+                    { label: 'Image / Artwork', value: 'image' },
+                    { label: 'Video / Animation', value: 'video' },
+                    { label: '3D Model (interactive)', value: '3d' },
+                  ],
+                  hint: 'This decides which section of the gallery it appears in.',
+                },
+                {
+                  label: 'Image / Thumbnail',
+                  name: 'image',
+                  widget: 'image',
+                  required: false,
+                  hint: 'Image: this is the artwork (required). Video & 3D Model: optional cover picture shown in the gallery. JPG, PNG or WEBP, ideally under 2 MB.',
+                },
+                {
+                  label: 'Video file',
+                  name: 'video',
+                  widget: 'file',
+                  required: false,
+                  hint: 'Video only. Upload an .mp4 file under 50 MB. For longer videos, upload to YouTube and use the link field below.',
+                },
+                {
+                  label: 'YouTube or Vimeo link',
+                  name: 'videoUrl',
+                  widget: 'string',
+                  required: false,
+                  hint: 'Video only, instead of uploading a file. Example: https://www.youtube.com/watch?v=abc123',
+                },
+                {
+                  label: '3D model file (.glb)',
+                  name: 'model',
+                  widget: 'file',
+                  required: false,
+                  hint: '3D Model only. In Blender: File → Export → glTF 2.0 → Format: glTF Binary (.glb). Keep it under 25 MB.',
+                },
+                { label: 'Description', name: 'description', widget: 'text', required: false },
+                {
+                  label: 'Software used',
+                  name: 'software',
+                  widget: 'select',
+                  multiple: true,
+                  required: false,
+                  options: softwareOptions,
+                },
+                {
+                  label: 'Date',
+                  name: 'date',
+                  widget: 'datetime',
+                  format: 'YYYY-MM-DD',
+                  date_format: 'YYYY-MM-DD',
+                  time_format: false,
+                  default: '{{now}}',
+                  hint: 'Newest projects show first. Change the date to move a project up or down.',
+                },
+                {
+                  label: 'Show on website',
+                  name: 'published',
+                  widget: 'boolean',
+                  default: true,
+                  hint: 'Turn off to hide this project without deleting it.',
+                },
+              ],
+            },
+            {
+              name: 'site',
+              label: 'Site Settings',
+              description: 'Your name, profile, skills, services and contact details.',
+              editor: { preview: false },
+              files: [
+                {
+                  name: 'settings',
+                  label: 'Profile & Contact',
+                  file: 'src/content/settings.json',
+                  fields: [
+                    { label: 'Browser tab title', name: 'siteTitle', widget: 'string' },
+                    { label: 'Logo (top-left)', name: 'logo', widget: 'image' },
+                    { label: 'Name on the big header', name: 'heroName', widget: 'string' },
+                    { label: 'Tagline under the name', name: 'heroTagline', widget: 'string' },
+                    { label: 'Header button text', name: 'heroButtonText', widget: 'string', required: false },
+                    {
+                      label: 'Header background video',
+                      name: 'heroVideo',
+                      widget: 'file',
+                      hint: 'Short looping .mp4 with no sound, under 10 MB works best.',
+                    },
+                    { label: 'About Me photo', name: 'aboutPhoto', widget: 'image' },
+                    {
+                      label: 'About Me text',
+                      name: 'aboutText',
+                      widget: 'text',
+                      hint: 'Leave an empty line between paragraphs.',
+                    },
+                    { label: 'Email', name: 'email', widget: 'string', required: false },
+                    { label: 'Phone', name: 'phone', widget: 'string', required: false },
+                    { label: 'Name in the copyright line', name: 'copyrightName', widget: 'string' },
+                    {
+                      label: 'Social links',
+                      name: 'socials',
+                      widget: 'list',
+                      summary: '{{fields.platform}} — {{fields.url}}',
+                      fields: [
+                        { label: 'Platform', name: 'platform', widget: 'select', options: socialOptions },
+                        { label: 'Link', name: 'url', widget: 'string' },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: 'skills',
+                  label: 'Skills',
+                  file: 'src/content/skills.json',
+                  fields: [
+                    {
+                      label: 'Technical / Creative skills',
+                      name: 'technical',
+                      widget: 'list',
+                      summary: '{{fields.name}}',
+                      fields: [
+                        { label: 'Skill', name: 'name', widget: 'string' },
+                        { label: 'Icon', name: 'icon', widget: 'select', options: skillIconOptions, required: false },
+                      ],
+                    },
+                    {
+                      label: 'Software',
+                      name: 'software',
+                      widget: 'list',
+                      summary: '{{fields.name}}',
+                      hint: 'The logo is picked automatically from the name when we have one.',
+                      fields: [{ label: 'Software name', name: 'name', widget: 'string' }],
+                    },
+                  ],
+                },
+                {
+                  name: 'services',
+                  label: 'Services & Commissions',
+                  file: 'src/content/services.json',
+                  fields: [
+                    {
+                      label: 'Services',
+                      name: 'services',
+                      widget: 'list',
+                      summary: '{{fields.icon}} {{fields.title}}',
+                      fields: [
+                        { label: 'Emoji icon', name: 'icon', widget: 'string', hint: 'Paste any emoji, e.g. 🎨' },
+                        { label: 'Title', name: 'title', widget: 'string' },
+                        { label: 'Description', name: 'description', widget: 'text' },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

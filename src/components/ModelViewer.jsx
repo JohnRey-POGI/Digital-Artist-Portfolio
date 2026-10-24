@@ -46,7 +46,7 @@ const ModelViewer = ({ modelUrl }) => {
       className={`bg-black/20 rounded-lg overflow-hidden backdrop-blur-xs ${
         fullscreen
           ? "fixed inset-0 w-screen h-screen z-[100] flex items-center justify-center"
-          : "relative w-[500px] md:w-[600px] lg:w-[700px] h-[50vh] md:h-[70vh] lg:h-[75vh]"
+          : "relative w-full md:w-[600px] lg:w-[700px] h-[50vh] md:h-[70vh] lg:h-[75vh]"
       }`}
     >
       {/* Fullscreen Button */}
